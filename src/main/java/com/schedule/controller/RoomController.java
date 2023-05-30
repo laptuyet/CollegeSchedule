@@ -20,4 +20,8 @@ public class RoomController {
     public List<Room> getAllRooms() {
         return roomService.findAll();
     }
+
+    public String test() {
+        return "test";
+    }
 }
