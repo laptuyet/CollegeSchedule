@@ -27,12 +27,4 @@ public class Department { // KHOA
         this.name = name;
         this.courses = courses;
     }
-
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public List<Course> getCourses() {
-//        return courses;
-//    }
 }

@@ -19,18 +19,4 @@ public class MeetingTime {
 
     private String time;
 
-//    public MeetingTime() {}
-//
-//    public MeetingTime(Long id, String time) {
-//        this.id = id;
-//        this.time = time;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public String getTime() {
-//        return time;
-//    }
 }
