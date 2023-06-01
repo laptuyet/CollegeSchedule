@@ -1,6 +1,7 @@
 package com.schedule.ga;
 
 import com.schedule.domain.Class;
+import com.schedule.domain.Instructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,14 @@ public class Schedule {
         // randomly initialize the schedule
         new ArrayList<>(dataForSchedule.getDepts()).forEach(dept -> {
             dept.getCourses().forEach(course -> {
-                Class newClass = new Class(classNumb++, dept, course);
-                newClass.setMeetingTime(dataForSchedule.getMeetingTimes().get((int) (dataForSchedule.getMeetingTimes().size() * Math.random())));
-                newClass.setRoom(dataForSchedule.getRooms().get((int) (dataForSchedule.getRooms().size() * Math.random())));
-                newClass.setInstructor(course.getInstructorCourses().get((int) (course.getInstructorCourses().size() * Math.random())).getInstructor());
-                classes.add(newClass);
+            	Instructor instr = course.getInstructorCourses().get((int) (course.getInstructorCourses().size() * Math.random())).getInstructor();
+            	if(!instr.getIsQuitJob()) {
+            		Class newClass = new Class(classNumb++, dept, course);
+                    newClass.setMeetingTime(dataForSchedule.getMeetingTimes().get((int) (dataForSchedule.getMeetingTimes().size() * Math.random())));
+                    newClass.setRoom(dataForSchedule.getRooms().get((int) (dataForSchedule.getRooms().size() * Math.random())));
+                    newClass.setInstructor(instr);
+                    classes.add(newClass);
+            	}
             });
         });
         return this;

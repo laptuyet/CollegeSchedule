@@ -97,4 +97,9 @@ public class RoomServiceImpl implements RoomService {
         return ResponseEntity.ok("Delete Room with number <" + number + "> successfully !!!");
     }
 
+	@Override
+	public List<Room> findAllAvailable() {
+		return roomRepo.findAllByRoomStatus(RoomStatus.ACTIVATED);
+	}
+
 }

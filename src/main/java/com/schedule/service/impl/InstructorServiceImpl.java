@@ -99,5 +99,10 @@ public class InstructorServiceImpl implements InstructorService {
         return ResponseEntity.ok("Delete Instructor with id <" + id + "> successfully !!!");
     }
 
+	@Override
+	public List<Instructor> findAllAvailable() {
+		return instructorRepo.findAllByIsQuitJob(false);
+	}
+
 
 }

@@ -29,7 +29,7 @@ public class ScheduleController {
         return scheduleService.generateSchedule();
     }
     
-    @GetMapping("/saveSchedule")
+    @PostMapping("/saveSchedule")
     public List<TimeTable> saveSchedule() {
     	return scheduleService.saveSchedule();
     }

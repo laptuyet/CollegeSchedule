@@ -78,7 +78,7 @@ public class Driver {
             System.out.print(String.format("\n  %1$02d  ", classNumb) + "  |  ");
             System.out.print(String.format("%1$4s", dataForSchedule.getDepts().get(majorIndex).getName()) + "  |  ");
             System.out.print(String.format("%1$21s", dataForSchedule.getCourses().get(coursesIndex).getName() + " (" + dataForSchedule.getCourses().get(coursesIndex).getNumber() + ", " + x.getCourse().getMaxNumberOfStudents()) + ")    | ");
-            System.out.print(String.format("%1$10s", dataForSchedule.getRooms().get(roomsIndex).getNumber() + "(" + x.getRoom().getSeatingCapacity()) + ")      |  ");
+            System.out.print(String.format("%1$10s", dataForSchedule.getRooms().get(roomsIndex).getName() + "(" + x.getRoom().getSeatingCapacity()) + ")      |  ");
             System.out.print(String.format("%1$15s", dataForSchedule.getInstructors().get(instructorsIndex).getLname() + " (" + dataForSchedule.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
             System.out.print(dataForSchedule.getMeetingTimes().get(meetingTimeIndex).getTime() + " (" + dataForSchedule.getMeetingTimes().get(meetingTimeIndex).getId() + ")");
             classNumb++;

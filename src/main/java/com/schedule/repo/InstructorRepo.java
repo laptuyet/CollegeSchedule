@@ -16,4 +16,6 @@ public interface InstructorRepo extends JpaRepository<Instructor, Long> {
 
     @Query("SELECT ins FROM Instructor ins WHERE ins.email = :newEmail AND ins.id <> :id")
     List<Instructor> checkNewEmail(Long id, String newEmail);
+    
+    List<Instructor> findAllByIsQuitJob(Boolean isQuitJob);
 }

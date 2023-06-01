@@ -10,6 +10,8 @@ public interface RoomService {
     Room findById(Long number);
 
     List<Room> findAll();
+    
+    List<Room> findAllAvailable();
 
     List<Room> findAll(Integer pageNo, Integer pageSize, String sortBy);
 

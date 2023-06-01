@@ -8,6 +8,7 @@ class CollegeSchedulingApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

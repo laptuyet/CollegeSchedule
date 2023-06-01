@@ -15,7 +15,7 @@ public class MeetingTimeServiceImpl implements MeetingTimeService {
     private final MeetingTimeRepo meetingTimeRepo;
 
     @Override
-    public List<MeetingTime> findALl() {
+    public List<MeetingTime> findAll() {
 
         return meetingTimeRepo.findAll();
     }

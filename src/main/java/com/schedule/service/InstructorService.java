@@ -10,6 +10,8 @@ public interface InstructorService {
     Instructor findById(Long id);
 
     List<Instructor> findAll();
+    
+    List<Instructor> findAllAvailable();
 
     List<Instructor> findAll(Integer pageNo, Integer pageSize, String sortBy);
 
