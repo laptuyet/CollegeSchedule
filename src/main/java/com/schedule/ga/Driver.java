@@ -19,7 +19,7 @@ public class Driver {
         this.dataForSchedule = dataForSchedule;
     }
 
-    public void demoScheduling() {
+    public Schedule demoScheduling() {
 
         int generationNumber = 0;
 
@@ -58,7 +58,7 @@ public class Driver {
             classNumb = 1;
             System.out.println();
         }
-
+        return population.getSchedules().get(0);
     }
 
     public void printScheduleAsTable(Schedule schedule, int generation) {

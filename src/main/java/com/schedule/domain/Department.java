@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,7 +24,12 @@ public class Department { // KHOA
     private String name;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Course> courses;
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<TimeTable> timeTables;
 
     public Department(String name, List<Course> courses) {
         this.name = name;

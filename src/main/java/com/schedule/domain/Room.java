@@ -1,5 +1,8 @@
 package com.schedule.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.schedule.model.RoomStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,6 +25,10 @@ public class Room {
 
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
+    
+    @OneToMany(mappedBy = "room")
+    @JsonIgnore
+    private List<TimeTable> timeTables;
 
     public Room(Long number, int seatingCapacity) {
         this.number = number;

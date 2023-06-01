@@ -1,18 +1,18 @@
 package com.schedule.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.schedule.model.User;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Entity
 @Data
@@ -35,6 +35,10 @@ public class Instructor extends User { //
     @OneToMany(mappedBy = "instructor")
     @JsonIgnore
     private List<InstructorCourse> instructorCourses;
+    
+    @OneToMany(mappedBy = "instructor")
+    @JsonIgnore
+    private List<TimeTable> timeTables;
 
     public String toString() {
         return super.getLname();

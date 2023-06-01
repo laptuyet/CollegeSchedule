@@ -1,39 +1,36 @@
 package com.schedule.controller;
 
-import com.schedule.ga.DataForSchedule;
-import com.schedule.ga.Driver;
-import com.schedule.service.*;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.schedule.domain.TimeTable;
+import com.schedule.service.ScheduleService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/schedules")
 public class ScheduleController {
 
-    private final RoomService roomService;
-
-    private final InstructorService instructorService;
-
-    private final CourseService courseService;
-
-    private final DepartmentService departmentService;
-
-    private final MeetingTimeService meetingTimeService;
-
+    private final ScheduleService scheduleService;
+    
+    @GetMapping("/getSchedule")
+    public List<TimeTable> getSchedule() {
+        return scheduleService.getSchedule();
+    }
 
     @GetMapping("/generateSchedule")
-    public void getSchedule() {
-        DataForSchedule dataForSchedule = new DataForSchedule(
-                roomService,
-                instructorService,
-                courseService,
-                departmentService,
-                meetingTimeService);
-
-        Driver driver = new Driver(dataForSchedule);
-        driver.demoScheduling();
+    public List<TimeTable> generateSchedule() {
+        return scheduleService.generateSchedule();
+    }
+    
+    @GetMapping("/saveSchedule")
+    public List<TimeTable> saveSchedule() {
+    	return scheduleService.saveSchedule();
     }
 }
