@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.schedule.model.User;
@@ -22,13 +20,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class Instructor extends User { //
 
-    @NotEmpty(message = "Academic Rank should not be empty")
-    @NotBlank(message = "Academic Rank should not be blank")
     private String academicRank; // học hàm
 
-
-    @NotEmpty(message = "Degree should not be empty")
-    @NotBlank(message = "Degree should not be blank")
     private String degree;       // học vị
 
     private Boolean isQuitJob;

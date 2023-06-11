@@ -1,6 +1,8 @@
 package com.schedule.model;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +14,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.schedule.utils.AppConstants;
@@ -26,8 +32,14 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    @Id
+public class User implements UserDetails{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -45,8 +57,6 @@ public class User {
 
     private Boolean gender; // 0: male, 1: female
 
-    @NotEmpty(message = "Address should not be empty")
-    @NotBlank(message = "Address should not be blank")
     private String address;
 
     @NotEmpty(message = "Email should not be empty")
@@ -71,4 +81,29 @@ public class User {
     @NotEmpty(message = "Password should not be empty")
     @NotBlank(message = "Password should not be blank")
     private String password;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority(this.getRole().name()));
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

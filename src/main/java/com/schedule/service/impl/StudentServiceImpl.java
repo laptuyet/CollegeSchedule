@@ -95,4 +95,11 @@ public class StudentServiceImpl implements StudentService {
 
         return ResponseEntity.ok("Delete Student with id <" + id + "> successfully !!!");
     }
+
+	@Override
+	public Student findByUsername(String username) {
+		return studentRepo.findByUsername(username).orElseThrow(
+                () -> new ResourceNotFoundException(String.format("Student with username<%s> not found", username))
+        );
+	}
 }

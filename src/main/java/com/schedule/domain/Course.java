@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,10 +27,13 @@ public class Course {
 
     private String name;
 
+    @Min(value = 1, message = "number of students must be > 0")
     private int maxNumberOfStudents;
+    
+    private Boolean isDeleted;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
-    @JsonIgnore
+//    @JsonIgnore
     private List<InstructorCourse> instructorCourses;
     
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)

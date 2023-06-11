@@ -45,7 +45,7 @@ public class DataForSchedule {
         
         this.meetingTimes = meetingTimeService.findAll();
         
-        this.courses = courseService.findAll();
+        this.courses = courseService.findAllAvailable();
         
         this.depts = departmentService.findAll();
 

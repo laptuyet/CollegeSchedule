@@ -1,9 +1,10 @@
-package com.schedule.repo;
-
-import com.schedule.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
-
-@NoRepositoryBean
-public interface UserRepo extends JpaRepository<User, Long> {
-}
+//package com.schedule.repo;
+//
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//import com.schedule.model.User;
+//
+//public interface UserRepo extends JpaRepository<User, Long> {
+//	
+//	User findByUsername(String username);
+//}

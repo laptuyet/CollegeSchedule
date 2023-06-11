@@ -6,9 +6,17 @@ import java.util.List;
 
 public interface CourseService {
 
-    Course findById(Long number);
+    Course findByNumber(String number);
 
     List<Course> findAll();
+    
+    List<Course> findAllAvailable();
 
     List<Course> findAllByDepartment(Long departmentId);
+
+	Course save(Course course);
+	
+	Course update(Course course);
+	
+	String delete(String number);
 }

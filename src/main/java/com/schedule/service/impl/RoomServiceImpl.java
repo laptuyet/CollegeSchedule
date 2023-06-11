@@ -1,14 +1,7 @@
 package com.schedule.service.impl;
 
-import com.schedule.domain.Instructor;
-import com.schedule.domain.Room;
-import com.schedule.exception.ExistingResourceException;
-import com.schedule.exception.ResourceNotFoundException;
-import com.schedule.model.RoomStatus;
-import com.schedule.repo.RoomRepo;
-import com.schedule.service.RoomService;
-import com.schedule.validator.ObjectsValidator;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +11,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.schedule.domain.Room;
+import com.schedule.exception.ExistingResourceException;
+import com.schedule.exception.ResourceNotFoundException;
+import com.schedule.model.RoomStatus;
+import com.schedule.repo.RoomRepo;
+import com.schedule.service.RoomService;
+import com.schedule.validator.ObjectsValidator;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -63,9 +64,7 @@ public class RoomServiceImpl implements RoomService {
         if (roomRepo.findByName(room.getName()).isPresent()) {
             throw new ExistingResourceException("Room with name <" + room.getName() + "> is existing");
         }
-
-        roomRepo.save(room);
-        return null;
+        return roomRepo.save(room);
     }
 
     @Override

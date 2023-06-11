@@ -1,14 +1,16 @@
 package com.schedule.service;
 
-import com.schedule.domain.Instructor;
-import com.schedule.domain.Student;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
+import com.schedule.domain.Student;
 
 public interface StudentService {
 
     Student findById(Long id);
+    
+    Student findByUsername(String username);
 
     List<Student> findAll();
 

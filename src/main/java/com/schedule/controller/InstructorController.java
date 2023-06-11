@@ -4,6 +4,7 @@ package com.schedule.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,18 +46,21 @@ public class InstructorController {
         return instructorService.findAll(pageNo, pageSize, sortBy);
     }
 
+    @PreAuthorize("hasRole('ROLE_OFFICER')")
     @PostMapping("/create")
     public ResponseEntity<Instructor> createInstructor(@RequestBody Instructor instructor) {
         return ResponseEntity
                 .ok(instructorService.save(instructor));
     }
 
+    @PreAuthorize("hasRole('ROLE_OFFICER')")
     @PutMapping("/update")
     public ResponseEntity<Instructor> updateInstructor (@RequestBody Instructor instructor) {
         return ResponseEntity
                 .ok(instructorService.update(instructor));
     }
 
+    @PreAuthorize("hasRole('ROLE_OFFICER')")
     @DeleteMapping("delete/{id}")
     public  ResponseEntity<String> deleteInstructorById(@PathVariable Long id) {
         return instructorService.delete(id);

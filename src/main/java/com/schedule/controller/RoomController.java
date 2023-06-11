@@ -3,6 +3,7 @@ package com.schedule.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,18 +45,21 @@ public class RoomController {
         return roomService.findAll(pageNo, pageSize, sortBy);
     }
 
+    @PreAuthorize("hasRole('ROLE_FACILITY')")
     @PostMapping("/create")
     public ResponseEntity<Room> createRoom(@RequestBody Room room) {
         return ResponseEntity
                 .ok(roomService.save(room));
     }
 
+    @PreAuthorize("hasRole('ROLE_FACILITY')")
     @PutMapping("/update")
     public ResponseEntity<Room> updateRoom(@RequestBody Room room) {
         return ResponseEntity.
                 ok(roomService.update(room));
     }
 
+    @PreAuthorize("hasRole('ROLE_FACILITY')")
     @DeleteMapping("/delete/{number}")
     public ResponseEntity<String> deleteRoomByNumber (@PathVariable Long number) {
         return roomService.delete(number);
