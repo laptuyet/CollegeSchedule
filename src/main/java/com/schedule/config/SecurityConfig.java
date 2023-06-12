@@ -72,13 +72,15 @@ public class SecurityConfig {
 			.anyRequest()
 			.authenticated()
 			.and()
-			.authenticationProvider(authenticationProvider());
-			http
 			.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+			.sessionFixation().migrateSession()
+			.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+			.maximumSessions(1)
+			.expiredUrl("/login?expired")
 			.and()
-			.sessionManagement()
-			.sessionFixation().newSession();
+			.invalidSessionUrl("/login")
+			.and()
+			.authenticationProvider(authenticationProvider());
 			return http.build();
 	}
 	
