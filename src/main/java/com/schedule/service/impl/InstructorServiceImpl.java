@@ -32,6 +32,13 @@ public class InstructorServiceImpl implements InstructorService {
                 () -> new ResourceNotFoundException(String.format("Instructor with id<%s> not found", id))
         );
     }
+    
+    @Override
+	public Instructor findByUsername(String username) {
+		return instructorRepo.findByUsername(username).orElseThrow(
+                () -> new ResourceNotFoundException(String.format("Instructor with username<%s> not found", username))
+        );
+	}
 
     @Override
     public List<Instructor> findAll() {
@@ -103,6 +110,4 @@ public class InstructorServiceImpl implements InstructorService {
 	public List<Instructor> findAllAvailable() {
 		return instructorRepo.findAllByIsQuitJob(false);
 	}
-
-
 }

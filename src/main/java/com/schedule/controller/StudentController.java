@@ -30,9 +30,15 @@ public class StudentController {
         return studentService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Long id) {
-        return studentService.findById(id);
+    @GetMapping("/{idOrUsername}")
+    public Student getStudentById(@PathVariable Object idOrUsername) {
+    	try {
+    		Long id = Long.valueOf(String.valueOf(idOrUsername));
+    		return studentService.findById(id);
+    	} catch (NumberFormatException ex) {
+    		String username = String.valueOf(idOrUsername);
+    		return studentService.findByUsername(username);
+    	}
     }
 
     @GetMapping("/all/paging")

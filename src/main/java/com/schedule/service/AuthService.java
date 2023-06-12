@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,12 +43,15 @@ public class AuthService {
 				.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-
+		
+		String role = SecurityContextHolder.getContext()
+				.getAuthentication().getAuthorities().toArray(new SimpleGrantedAuthority[0])[0].getAuthority();
+				
 		return ApiErrorResponse
 				.builder()
 				.statusCode(200)
 				.dateTime(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")))
-				.message("Login successfully!")
+				.message(role)
 				.build();
 	}
 

@@ -8,6 +8,8 @@ import java.util.List;
 public interface InstructorService {
 
     Instructor findById(Long id);
+    
+    Instructor findByUsername(String username);
 
     List<Instructor> findAll();
     
@@ -20,4 +22,5 @@ public interface InstructorService {
     Instructor update(Instructor objectFromJson);
 
     ResponseEntity<String> delete(Long id);
+
 }

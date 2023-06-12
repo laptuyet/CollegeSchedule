@@ -32,9 +32,16 @@ public class InstructorController {
         return instructorService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Instructor getInstructorById(@PathVariable Long id) {
-        return instructorService.findById(id);
+    @GetMapping("/{idOrUsername}")
+    public Instructor getInstructorById(@PathVariable Object idOrUsername) {
+    	
+    	try {
+    		Long id = Long.valueOf(String.valueOf(idOrUsername));
+    		return instructorService.findById(id);
+    	} catch (NumberFormatException ex) {
+    		String username = String.valueOf(idOrUsername);
+    		return instructorService.findByUsername(username);
+    	}
     }
 
     @GetMapping("/all/paging")

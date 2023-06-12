@@ -40,4 +40,6 @@ public class AuthController {
 				.getAuthorities().toArray(new SimpleGrantedAuthority[0])[0].getAuthority());
 		SecurityContextHolder.clearContext();
 	}
+	
+	
 }
