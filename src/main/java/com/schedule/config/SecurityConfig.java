@@ -53,7 +53,7 @@ public class SecurityConfig {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry
-				.addMapping("/api/v1/**")
+				.addMapping("/**")
 				.allowedHeaders(CorsConfiguration.ALL)
 				.allowedOriginPatterns(CorsConfiguration.ALL)
 				.allowedMethods(CorsConfiguration.ALL);
@@ -66,7 +66,7 @@ public class SecurityConfig {
 		http
 			.cors().and().csrf().disable()
 			.authorizeHttpRequests()
-			.antMatchers("/**")
+			.antMatchers("/api/v1/auth/**")
 			.permitAll()
 			.anyRequest()
 			.authenticated()
