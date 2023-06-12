@@ -56,8 +56,7 @@ public class SecurityConfig {
 				.addMapping("/api/v1/**")
 				.allowedHeaders(CorsConfiguration.ALL)
 				.allowedOrigins(CorsConfiguration.ALL)
-				.allowedMethods(CorsConfiguration.ALL)
-				.allowCredentials(true);
+				.allowedMethods(CorsConfiguration.ALL);
 			}
 		};
 	}
