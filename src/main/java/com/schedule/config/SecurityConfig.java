@@ -70,7 +70,7 @@ public class SecurityConfig {
 			.antMatchers("/api/v1/auth/**")
 			.permitAll()
 			.anyRequest()
-			.permitAll()
+			.authenticated()
 			.and()
 			.authenticationProvider(authenticationProvider());
 			http
