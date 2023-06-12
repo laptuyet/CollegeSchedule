@@ -73,8 +73,7 @@ public class SecurityConfig {
 			.anyRequest()
 			.authenticated()
 			.and()
-			.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+			.authenticationProvider(authenticationProvider());
 			
 			return http.build();
 	}
