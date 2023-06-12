@@ -54,9 +54,9 @@ public class SecurityConfig {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry
-				.addMapping("/**")
+				.addMapping("/api/v1/**")
 				.allowedHeaders(CorsConfiguration.ALL)
-				.allowedOriginPatterns(CorsConfiguration.ALL)
+				.allowedOrigins(CorsConfiguration.ALL)
 				.allowedMethods(CorsConfiguration.ALL)
 				.allowCredentials(true);
 			}
@@ -66,7 +66,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-			.cors().and().csrf().disable()
+			.csrf().disable()
 			.authorizeHttpRequests()
 			.antMatchers("/api/v1/auth/**")
 			.permitAll()
