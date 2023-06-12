@@ -1,7 +1,6 @@
 package com.schedule.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,10 +35,7 @@ public class AuthController {
 	
 	@GetMapping("/logout")
 	public void logout() {
-		System.out.println("before logout: " + SecurityContextHolder.getContext().getAuthentication()
-				.getAuthorities().toArray(new SimpleGrantedAuthority[0])[0].getAuthority());
 		SecurityContextHolder.clearContext();
 	}
-	
 	
 }
