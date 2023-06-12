@@ -41,7 +41,8 @@ public class AuthService {
 	public ApiErrorResponse login(LoginDTO loginDTO) {
 		Authentication authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
-
+		
+		authentication.setAuthenticated(true);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		String role = SecurityContextHolder.getContext()
