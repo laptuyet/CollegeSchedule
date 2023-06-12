@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -70,15 +69,7 @@ public class SecurityConfig {
 			.antMatchers("/api/v1/auth/**")
 			.permitAll()
 			.anyRequest()
-			.authenticated()
-			.and()
-			.sessionManagement()
-			.sessionFixation().migrateSession()
-			.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-			.maximumSessions(1)
-			.expiredUrl("/login?expired")
-			.and()
-			.invalidSessionUrl("/login")
+			.permitAll()
 			.and()
 			.authenticationProvider(authenticationProvider());
 			return http.build();
