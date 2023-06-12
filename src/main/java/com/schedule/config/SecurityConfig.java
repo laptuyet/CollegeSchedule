@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -56,7 +57,8 @@ public class SecurityConfig {
 				.addMapping("/**")
 				.allowedHeaders(CorsConfiguration.ALL)
 				.allowedOriginPatterns(CorsConfiguration.ALL)
-				.allowedMethods(CorsConfiguration.ALL);
+				.allowedMethods(CorsConfiguration.ALL)
+				.allowCredentials(true);
 			}
 		};
 	}
@@ -69,7 +71,10 @@ public class SecurityConfig {
 			.antMatchers("/api/v1/auth/**")
 			.permitAll()
 			.anyRequest()
-			.authenticated();
+			.authenticated()
+			.and()
+			.sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 			
 			return http.build();
 	}
