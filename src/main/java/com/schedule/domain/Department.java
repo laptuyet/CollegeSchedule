@@ -37,6 +37,10 @@ public class Department { // KHOA
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<TimeTable> timeTables;
+    
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<StudentClass> studentClasses;
 
     public Department(String name, List<Course> courses) {
         this.name = name;

@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentClass {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,4 +39,8 @@ public class StudentClass {
     @OneToMany(mappedBy = "studentClass")
     @JsonBackReference
     private List<Student> students;
+    
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 }

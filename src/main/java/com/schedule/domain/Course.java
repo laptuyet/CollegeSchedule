@@ -43,6 +43,10 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+    
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<TrainingProgram> trainingPrograms;
 
 //    public String getNumber() {
 //        return number;
