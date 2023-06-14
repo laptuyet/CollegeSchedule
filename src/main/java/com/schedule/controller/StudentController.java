@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.schedule.domain.Student;
+import com.schedule.domain.StudentTimeTable;
 import com.schedule.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
@@ -66,5 +67,19 @@ public class StudentController {
     public  ResponseEntity<String> deleteStudentById(@PathVariable Long id) {
         return studentService.delete(id);
     }
-
+    
+    @GetMapping("/schedule/{studentId}")
+    public List<StudentTimeTable> getScheduleOfStudent(@PathVariable Long studentId) {
+    	return studentService.getScheduleOfStudent(studentId);
+    }
+    
+    @PostMapping("/schedule/{studentId}/{timeTableId}")
+    public StudentTimeTable addTimeTableForStudent(
+    		@PathVariable Long studentId,
+    		@PathVariable Integer timeTableId
+    		) {
+    	return studentService.addTimeTable(studentId, timeTableId);
+    }
+    
+    
 }

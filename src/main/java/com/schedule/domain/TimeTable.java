@@ -1,11 +1,17 @@
 package com.schedule.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,4 +46,25 @@ public class TimeTable {
 	@ManyToOne
 	@JoinColumn(name = "room_id")
 	private Room room;
+	
+	@OneToMany(mappedBy = "timeTable", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<StudentTimeTable> studentTimeTables;
+	
+	public TimeTable(
+			Integer id,
+			Department department,
+			Course course,
+			Instructor instructor,
+			MeetingTime meetingTime,
+			Room room
+			) {
+		this.id = id;
+		this.department = department;
+		this.course = course;
+		this.instructor = instructor;
+		this.meetingTime = meetingTime;
+		this.room = room;
+	}
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.schedule.domain.Student;
+import com.schedule.domain.StudentTimeTable;
 
 public interface StudentService {
 
@@ -21,4 +22,8 @@ public interface StudentService {
     Student update(Student objectFromJson);
 
     ResponseEntity<String> delete(Long id);
+
+	StudentTimeTable addTimeTable(Long studentId, Integer timeTableId);
+
+	List<StudentTimeTable> getScheduleOfStudent(Long studentId);
 }

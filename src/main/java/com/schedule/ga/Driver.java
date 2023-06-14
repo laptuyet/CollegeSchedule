@@ -1,9 +1,8 @@
 package com.schedule.ga;
 
-import com.schedule.domain.Class;
-
-import javax.xml.crypto.Data;
 import java.util.List;
+
+import com.schedule.domain.Class;
 
 public class Driver {
     public static final int POPULATION_SIZE = 9;
