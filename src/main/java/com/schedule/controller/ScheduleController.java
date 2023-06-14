@@ -25,13 +25,13 @@ public class ScheduleController {
         return scheduleService.getSchedule();
     }
     
-    @PreAuthorize("hasRole('ROLE_OFFICER')")
+//    @PreAuthorize("hasRole('ROLE_OFFICER')")
     @GetMapping("/generateSchedule")
     public List<TimeTable> generateSchedule() {
         return scheduleService.generateSchedule();
     }
     
-    @PreAuthorize("hasRole('ROLE_OFFICER')")
+//    @PreAuthorize("hasRole('ROLE_OFFICER')")
     @PostMapping("/saveSchedule")
     public List<TimeTable> saveSchedule() {
     	return scheduleService.saveSchedule();

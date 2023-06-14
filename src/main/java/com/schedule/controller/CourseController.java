@@ -3,7 +3,6 @@ package com.schedule.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,19 +39,16 @@ public class CourseController {
 		return courseService.findAllByDepartment(departmentId);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_OFFICER')")
 	@PostMapping("/create")
 	public Course createCourse(@RequestBody Course course) {
 		return courseService.save(course);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_OFFICER')")
 	@PutMapping("/update")
 	public Course updateCourse(@RequestBody Course course) {
 		return courseService.update(course);
 	}
-	
-	@PreAuthorize("hasRole('ROLE_OFFICER')")
+
 	@DeleteMapping("/delete/{number}")
 	public ResponseEntity<String> deleteCourse(@PathVariable String number) {
 		return ResponseEntity.ok(courseService.delete(number));
