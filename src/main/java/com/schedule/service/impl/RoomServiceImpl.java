@@ -74,9 +74,9 @@ public class RoomServiceImpl implements RoomService {
 
         Room newRoom = findById(room.getNumber());
 
-        if (roomRepo.findByName(room.getName().trim()).isPresent()) {
-            throw new ExistingResourceException("Room with name <" + room.getName() + "> is existing");
-        }
+//        if (roomRepo.findByName(room.getName().trim()).isPresent()) {
+//            throw new ExistingResourceException("Room with name <" + room.getName() + "> is existing");
+//        }
         if (room.getName() != null)
         	newRoom.setName(room.getName().trim());
         
