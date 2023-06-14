@@ -77,10 +77,14 @@ public class RoomServiceImpl implements RoomService {
         if (roomRepo.findByName(room.getName().trim()).isPresent()) {
             throw new ExistingResourceException("Room with name <" + room.getName() + "> is existing");
         }
-
-        newRoom.setName(room.getName().trim());
-        newRoom.setRoomStatus(room.getRoomStatus());
-        newRoom.setSeatingCapacity(room.getSeatingCapacity());
+        if (room.getName() != null)
+        	newRoom.setName(room.getName().trim());
+        
+        if (room.getRoomStatus() != null)
+        	newRoom.setRoomStatus(room.getRoomStatus());
+        
+        if (room.getSeatingCapacity() != null)
+        	newRoom.setSeatingCapacity(room.getSeatingCapacity());
 
         return roomRepo.save(newRoom);
     }

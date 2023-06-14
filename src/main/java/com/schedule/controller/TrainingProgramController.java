@@ -45,7 +45,7 @@ public class TrainingProgramController {
 		return trainingProgramService.update(major, oldCourseNumber, newCourseNumber);
 	}
 	
-	@GetMapping("/delete/{major}/{courseNumber}")
+	@DeleteMapping("/delete/{major}/{courseNumber}")
 	public ResponseEntity<String> deleteCourseFromTrainingProgram(
 			@PathVariable Major major,
 			@PathVariable String courseNumber

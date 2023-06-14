@@ -30,7 +30,7 @@ public class Room {
     @Column(unique = true)
     private String name;
 
-    private int seatingCapacity;
+    private Integer seatingCapacity;
 
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
