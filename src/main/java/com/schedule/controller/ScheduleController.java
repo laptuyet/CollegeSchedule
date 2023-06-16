@@ -2,8 +2,8 @@ package com.schedule.controller;
 
 import java.util.List;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +35,18 @@ public class ScheduleController {
     @PostMapping("/saveSchedule")
     public List<TimeTable> saveSchedule() {
     	return scheduleService.saveSchedule();
+    }
+    
+    @GetMapping("/extra/{instructorId}/{courseNumber}")
+    public TimeTable generateExtraTimeTableForNewCourse(
+    		@PathVariable Long instructorId,
+    		@PathVariable String courseNumber
+    		) {
+    	return scheduleService.generateExtra(instructorId, courseNumber);
+    }
+    
+    @GetMapping("/extra/save")
+    public TimeTable saveExtraTimeTable() {
+    	return scheduleService.saveExtra();
     }
 }

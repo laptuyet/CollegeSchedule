@@ -2,6 +2,9 @@ package com.schedule.ga;
 
 import com.schedule.domain.Class;
 import com.schedule.domain.Instructor;
+import com.schedule.domain.MeetingTime;
+import com.schedule.domain.Room;
+import com.schedule.domain.TimeTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,5 +90,48 @@ public class Schedule {
         returnValue += classes.get(classes.size() - 1);
         return returnValue;
     }
+
+	public static TimeTable getExtra(
+			TimeTable randomTimeTable,
+			List<TimeTable> schedule,
+			 List<Room> rooms,
+			 List<MeetingTime> meetingTimes) {
+		
+		int numOfGenerate = 1;
+		
+		while(calculateFitnessForExtra(randomTimeTable, schedule) != 1.0) {
+			numOfGenerate++;
+			randomTimeTable.setMeetingTime(meetingTimes.get((int)(Math.random() * meetingTimes.size())));
+			randomTimeTable.setRoom(rooms.get((int)(Math.random() * rooms.size())));
+		}
+		
+		System.out.println("Generate extra class after: %d times".formatted(numOfGenerate));
+		
+		return randomTimeTable;
+	}
+	
+	public static double calculateFitnessForExtra(TimeTable randomTimeTable, List<TimeTable> schedule) {
+		int numOfConflicts = 0;
+		
+		if (randomTimeTable.getCourse().getMaxNumberOfStudents() > randomTimeTable.getRoom().getSeatingCapacity())
+			numOfConflicts++;
+		
+		for(TimeTable s : schedule) {
+			
+			// cũng giảng viên đó, môn đó, nếu cùng phòng mà cùng luôn tgian dạy thì conflict
+			if (s.getRoom() == randomTimeTable.getRoom()) {
+				if (s.getMeetingTime() == randomTimeTable.getMeetingTime()) {
+					numOfConflicts++;
+				}
+			} else { 
+			// cũng giảng viên đó, môn đó, khác phòng nhưng cùng tgian dạy thì conflict (kiểu như phân thân 2 nơi => vô lý)
+				if (s.getMeetingTime() == randomTimeTable.getMeetingTime()) {
+					numOfConflicts++;
+				}
+			}
+		};
+		
+		return 1 / (numOfConflicts + 1);
+	}
 
 }

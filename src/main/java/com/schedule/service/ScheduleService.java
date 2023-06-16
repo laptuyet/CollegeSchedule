@@ -10,4 +10,8 @@ public interface ScheduleService {
     List<TimeTable> saveSchedule();
 
 	List<TimeTable> getSchedule();
+
+	TimeTable generateExtra(Long instructorId, String courseNumber);
+
+	TimeTable saveExtra();
 }

@@ -3,6 +3,11 @@ package com.schedule.ga;
 import java.util.List;
 
 import com.schedule.domain.Class;
+import com.schedule.domain.Course;
+import com.schedule.domain.Instructor;
+import com.schedule.domain.TimeTable;
+import com.schedule.service.MeetingTimeService;
+import com.schedule.service.RoomService;
 
 public class Driver {
     public static final int POPULATION_SIZE = 9;
@@ -107,4 +112,31 @@ public class Driver {
         System.out.print("...........................................................................................");
         System.out.println("...........................................................................................");
     }
+
+	public static TimeTable generateExtra(
+			Instructor instructor,
+			Course course,
+			List<TimeTable> schedule,
+			RoomService roomService,
+			MeetingTimeService meetingTimeService) {
+		
+		var rooms = roomService.findAllAvailable();
+		var meetingTimes = meetingTimeService.findAll();
+		
+		int newId = schedule.get(schedule.size() - 1).getId() + 1;
+		
+		TimeTable randomTimeTable = TimeTable
+				.builder()
+				.id(newId)
+				.department(course.getDepartment())
+				.course(course)
+				.instructor(instructor)
+				.meetingTime(meetingTimes.get((int)(Math.random() * meetingTimes.size())))
+				.room(rooms.get((int)(Math.random() * rooms.size())))
+				.build();
+		
+		randomTimeTable =  Schedule.getExtra(randomTimeTable, schedule, rooms, meetingTimes);
+		
+		return randomTimeTable;
+	}
 }
