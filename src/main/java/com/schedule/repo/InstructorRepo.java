@@ -1,13 +1,13 @@
 package com.schedule.repo;
 
-import com.schedule.domain.Instructor;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import com.schedule.domain.Instructor;
 
 @Repository
 public interface InstructorRepo extends JpaRepository<Instructor, Long> {
@@ -17,5 +17,13 @@ public interface InstructorRepo extends JpaRepository<Instructor, Long> {
     @Query("SELECT ins FROM Instructor ins WHERE ins.email = :newEmail AND ins.id <> :id")
     List<Instructor> checkNewEmail(Long id, String newEmail);
     
-    List<Instructor> findAllByIsQuitJob(Boolean isQuitJob);
+    @Query("""
+    		select ins
+    		from Instructor ins 
+    		where ins.isQuitJob = false and ins.role = 'ROLE_LECTURER'
+    		and ins.id in (select ic.id from InstructorCourse ic)
+    		""")
+    List<Instructor> findAllAvailable();
+    
+    List<Instructor> findByIdIn(List<Long> ids);
 }

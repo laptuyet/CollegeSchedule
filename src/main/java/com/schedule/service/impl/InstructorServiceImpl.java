@@ -108,6 +108,6 @@ public class InstructorServiceImpl implements InstructorService {
 
 	@Override
 	public List<Instructor> findAllAvailable() {
-		return instructorRepo.findAllByIsQuitJob(false);
+		return instructorRepo.findAllAvailable();
 	}
 }

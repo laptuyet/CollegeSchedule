@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.schedule.domain.Course;
+import com.schedule.dto.CourseDTO;
 import com.schedule.service.CourseService;
 
 import lombok.RequiredArgsConstructor;
@@ -40,8 +41,8 @@ public class CourseController {
 	}
 	
 	@PostMapping("/create")
-	public Course createCourse(@RequestBody Course course) {
-		return courseService.save(course);
+	public Course createCourse(@RequestBody CourseDTO courseDto) {
+		return courseService.save(courseDto);
 	}
 	
 	@PutMapping("/update")

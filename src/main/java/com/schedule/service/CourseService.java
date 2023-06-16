@@ -1,6 +1,7 @@
 package com.schedule.service;
 
 import com.schedule.domain.Course;
+import com.schedule.dto.CourseDTO;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface CourseService {
 
     List<Course> findAllByDepartment(Long departmentId);
 
-	Course save(Course course);
+	Course save(CourseDTO courseDto);
 	
 	Course update(Course course);
 	
