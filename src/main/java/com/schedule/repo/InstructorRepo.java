@@ -21,7 +21,7 @@ public interface InstructorRepo extends JpaRepository<Instructor, Long> {
     		select ins
     		from Instructor ins 
     		where ins.isQuitJob = false and ins.role = 'ROLE_LECTURER'
-    		and ins.id in (select ic.id from InstructorCourse ic)
+    		and ins.id in (select ic.instructor.id from InstructorCourse ic)
     		""")
     List<Instructor> findAllAvailable();
     
