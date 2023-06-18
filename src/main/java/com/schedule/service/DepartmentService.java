@@ -7,6 +7,8 @@ import java.util.List;
 public interface DepartmentService {
 
     Department findById(Long id);
+    
+    Department findByName(String name);
 
     List<Department> findAll();
 }

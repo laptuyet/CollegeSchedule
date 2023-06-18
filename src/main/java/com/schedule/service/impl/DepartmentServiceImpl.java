@@ -18,11 +18,17 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department findById(Long id) {
         return departmentRepo.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException(String.format("Department with id<%s> not found", id)));
+                () -> new ResourceNotFoundException(String.format("Department with id<%d> not found", id)));
     }
 
     @Override
     public List<Department> findAll() {
         return departmentRepo.findAll();
     }
+
+	@Override
+	public Department findByName(String name) {
+		return departmentRepo.findByName(name).orElseThrow(
+                () -> new ResourceNotFoundException(String.format("Department with name<%s> not found", name)));
+	}
 }
