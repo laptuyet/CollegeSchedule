@@ -21,7 +21,6 @@ import com.schedule.repo.StudentRepo;
 import com.schedule.repo.StudentTimeTableRepo;
 import com.schedule.repo.TimeTableRepo;
 import com.schedule.service.StudentService;
-import com.schedule.service.TimeTableService;
 import com.schedule.validator.ObjectsValidator;
 
 import lombok.RequiredArgsConstructor;
